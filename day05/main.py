@@ -1,5 +1,4 @@
 import re, copy
-from visualisation import plot_stacks
 
 with open('input.txt') as f:
     stacks, inst = f.read().split("\n\n")
@@ -27,5 +26,4 @@ def solve(stacks, inst):
     return ans1, ans2
 
 
-# print(solve(stacks, inst))
-plot_stacks(stacks)
+print(solve(stacks, inst))

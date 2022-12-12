@@ -1,5 +1,8 @@
-with open('input.txt', 'r') as f:
-    data = [line.strip().split(' ') for line in f]
+def main():
+    with open('input.txt', 'r') as f:
+        data = [line.strip().split(' ') for line in f]
+       
+    print(solve(data))
 
 
 def solve(data):
@@ -27,4 +30,5 @@ def solve(data):
     return final_score, final_score2
 
 
-print(solve(data))
+if __name__ == '__main__':
+    main()

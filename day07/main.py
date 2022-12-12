@@ -1,26 +1,30 @@
 import os
 
-with open('input.txt') as f:
-    tree = {}
-    for line in f:
-        line = line.strip()
-        if line.startswith("$"):
-            _, cmd, *dir = line.split()
-            if cmd == "cd":
-                path = dir[0]
-                if path == "/":
-                    cur_dir = path
-                else:
-                    cur_dir = os.path.normpath(os.path.join(cur_dir, path))
-                if cur_dir not in tree:
-                    tree[cur_dir] = []
-        else:
-            size, name = line.split()
-            if size != 'dir':
-                tree[cur_dir].append((name, int(size)))
+
+def main():
+    with open('input.txt') as f:
+        tree = {}
+        for line in f:
+            line = line.strip()
+            if line.startswith("$"):
+                _, cmd, *dir = line.split()
+                if cmd == "cd":
+                    path = dir[0]
+                    if path == "/":
+                        cur_dir = path
+                    else:
+                        cur_dir = os.path.normpath(os.path.join(cur_dir, path))
+                    if cur_dir not in tree:
+                        tree[cur_dir] = []
             else:
-                tree[cur_dir].append(
-                    os.path.normpath(os.path.join(cur_dir, name)))
+                size, name = line.split()
+                if size != 'dir':
+                    tree[cur_dir].append((name, int(size)))
+                else:
+                    tree[cur_dir].append(
+                        os.path.normpath(os.path.join(cur_dir, name)))
+                    
+    print(solve(tree))
 
 
 def calc_size(tree, dir):
@@ -50,4 +54,5 @@ def solve(tree):
     return p1, p2
 
 
-print(solve(tree))
+if __name__ == '__main__':
+    main()

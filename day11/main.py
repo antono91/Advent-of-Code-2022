@@ -1,7 +1,12 @@
 import copy
 
-with open('input.txt') as f:
-    data = f.read().split('\n\n')
+
+def main():
+    with open('input.txt') as f:
+        data = f.read().split('\n\n')
+        
+    print(solve(copy.deepcopy(data), True))
+    print(solve(data, False))
 
 
 class Monkey:
@@ -53,5 +58,5 @@ def solve(data, p1):
     return x * y
 
 
-print(solve(copy.deepcopy(data), True))
-print(solve(data, False))
+if __name__ == '__main__':
+    main()

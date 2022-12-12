@@ -1,5 +1,8 @@
-with open('input.txt') as f:
-    data = f.read().strip()
+def main():
+    with open('input.txt') as f:
+        data = f.read().strip()
+       
+    print(solve(data, 4), solve(data, 14))
 
 
 def solve(data, lm):
@@ -8,4 +11,5 @@ def solve(data, lm):
             return i + lm
 
 
-print(solve(data, 4), solve(data, 14))
+if __name__ == '__main__':
+    main()

@@ -1,14 +1,16 @@
-with open('input.txt') as f:
-    m = {}
-    trees = [[int(i) for i in line.strip()] for line in f]
-    for i, r in enumerate(trees):
-        for j, c in enumerate(r):
-            m[(i, j)] = c
-
-DIR = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+def main():
+    with open('input.txt') as f:
+        m = {}
+        trees = [[int(i) for i in line.strip()] for line in f]
+        for i, r in enumerate(trees):
+            for j, c in enumerate(r):
+                m[(i, j)] = c
+                
+    print(solve(m))
 
 
 def is_visible(m, pos):
+    DIR = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     for xi, yi in DIR:
         dir = []
         new_pos = (pos[0] + xi, pos[1] + yi)
@@ -21,6 +23,7 @@ def is_visible(m, pos):
 
 
 def scenic_score(m, pos):
+    DIR = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     ss = 1
     for xi, yi in DIR:
         score = 0
@@ -41,4 +44,8 @@ def solve(m):
     return sum(is_visible(m, p) for p in m), max(scenic_score(m, p) for p in m)
 
 
-print(solve(m))
+if __name__ == '__main__':
+    main()
+
+
+

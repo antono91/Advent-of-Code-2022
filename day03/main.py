@@ -1,6 +1,8 @@
-with open('input.txt') as f:
-    data = [line.strip() for line in f]
 
+def main():
+    with open('input.txt') as f:
+        data = [line.strip() for line in f]
+    print(solve(data))
 
 def solve(data):
     s = s2 = 0
@@ -17,4 +19,5 @@ def solve(data):
     return s, s2
 
 
-print(solve(data))
+if __name__ == '__main__':
+    main()

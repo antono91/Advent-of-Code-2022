@@ -1,5 +1,8 @@
-with open('input.txt') as f:
-    data = [(d, int(m)) for d, m in [line.strip().split() for line in f]]
+def main():
+    with open('input.txt') as f:
+        data = [(d, int(m)) for d, m in [line.strip().split() for line in f]]
+    print(solve(data, 2))
+    print(solve(data, 10))
 
 
 def plot_rope(knots):
@@ -50,9 +53,12 @@ def solve(data, l):
             # Move Knot
             knots = move_rope(knots)
             visited.add(knots[-1])
-        # plot_rope(knots)
+
     return len(visited)
 
 
-print(solve(data, 2))
-print(solve(data, 10))
+if __name__ == '__main__':
+    main()
+
+
+

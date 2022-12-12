@@ -1,5 +1,8 @@
-with open('input.txt') as f:
-    data = [line.strip().split() for line in f]
+def main():
+    with open('input.txt') as f:
+        data = [line.strip().split() for line in f]
+        
+    print(solve(data))
 
 
 def solve(data):
@@ -23,4 +26,5 @@ def solve(data):
     return sum(cycle[i] * i for i in range(20, 241, 40))
 
 
-print(solve(data))
+if __name__ == '__main__':
+    main()

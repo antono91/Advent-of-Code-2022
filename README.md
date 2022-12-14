@@ -48,3 +48,11 @@ My Solutions to the [Advent of Code 2022](https://adventofcode.com) challenges
 --- Day 12: Hill Climbing Algorithm ---
 * [Challenge](https://adventofcode.com/2022/day/12)
 * [Solution](day12)
+
+--- Day 13: Distress Signal ---
+* [Challenge](https://adventofcode.com/2022/day/13)
+* [Solution](day13)
+
+--- Day 14: Regolith Reservoir ---
+* [Challenge](https://adventofcode.com/2022/day/14)
+* [Solution](day14)

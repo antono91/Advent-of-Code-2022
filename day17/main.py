@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+
+
 def main():
     with open('input.txt') as f:
         gas = [c for c in f.read().strip()]

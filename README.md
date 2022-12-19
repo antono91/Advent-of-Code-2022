@@ -56,3 +56,19 @@ My Solutions to the [Advent of Code 2022](https://adventofcode.com) challenges
 --- Day 14: Regolith Reservoir ---
 * [Challenge](https://adventofcode.com/2022/day/14)
 * [Solution](day14)
+
+--- Day 15: Beacon Exclusion Zone ---
+* [Challenge](https://adventofcode.com/2022/day/15)
+* [Solution](day15)
+
+--- Day 16: Proboscidea Volcanium ---
+* [Challenge](https://adventofcode.com/2022/day/16)
+* [Solution](day16) --pending--
+
+--- Day 17: Pyroclastic Flow ---
+* [Challenge](https://adventofcode.com/2022/day/17)
+* [Solution](day17)
+
+--- Day 18: Boiling Boulders ---
+* [Challenge](https://adventofcode.com/2022/day/18)
+* [Solution](day18)

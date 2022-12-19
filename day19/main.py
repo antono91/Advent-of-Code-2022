@@ -1,4 +1,4 @@
-!/usr/local/bin/python3
+#!/usr/local/bin/python3
 import re
 
 
@@ -22,13 +22,9 @@ def simulate_blueprint(ore, clay, obsidian, geode):
     for time in range(1,25):
         # buy new robots
         new_robots = []
-        for mineral, cost in costs:
-            if mineral in {ore, clay}:
-                if minerals[ore] >= cost:
 
         # collect minerals
         for ore, amount in robots.items():
-
             minerals[ore] += amount
         print(minerals)
     return robots, minerals, costs

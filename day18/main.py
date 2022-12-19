@@ -1,87 +1,51 @@
-#!/usr/local/bin/python
 from collections import deque
 
 
 def main():
     with open('input.txt') as f:
-        data = [tuple(map(int, line.strip().split(','))) for line in f] 
+        data = [tuple(map(int, line.strip().split(','))) for line in f]
 
-    print(solve1(data))
-    print(solve2(data))
+    print(solve(data))
 
 
-def solve1(data):
-    faces = 0
+def solve(data):
+    part1 = 0
     for x, y, z in data:
-        if (x - 1, y, z) not in data:
-            faces += 1
-        if (x + 1, y, z) not in data:
-            faces += 1
-        if (x, y - 1, z) not in data:
-            faces += 1
-        if (x, y + 1, z) not in data:
-            faces += 1
-        if (x, y, z - 1) not in data:
-            faces += 1
-        if (x, y, z + 1) not in data:
-            faces += 1
-    return faces
+        part1 += len([n for n in get_neighbors(x, y, z) if n not in data])
+    part2 = flood_fill(data)
+    return part1, part2
 
 
-outside = set()
-inside = set()
-def solve2(data):
-    inside.clear()
-    outside.clear()
-    out_faces = 0
-
-    for x, y, z in data:
-        if flood_fill(x + 1, y, z, data):
-            out_faces += 1
-        if flood_fill(x - 1, y, z, data):
-            out_faces += 1
-        if flood_fill(x, y + 1, z, data):
-            out_faces += 1
-        if flood_fill(x, y - 1, z, data):
-            out_faces += 1
-        if flood_fill(x, y, z + 1, data):
-            out_faces += 1
-        if flood_fill(x, y, z - 1, data):
-            out_faces += 1
-
-    return out_faces
+def get_neighbors(x, y, z):
+    neighbors = []
+    for dx, dy, dz in [(1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1), (0, 0, -1)]:
+        neighbors.append((x + dx, y + dy, z + dz))
+    return neighbors
 
 
-def flood_fill(x, y, z, data):
-    if (x, y, z) in inside:
-        return False
-    if (x, y, z) in outside:
-        return True
+def flood_fill(data):
+    _x = [x for (x, y, z) in data]
+    _y = [y for (x, y, z) in data]
+    _z = [z for (x, y, z) in data]
 
-    q = deque([(x, y, z)])
+    min_coord, max_coord = min(_x + _y + _z) - 1, max(_x + _y + _z) + 1
+
+    outside_faces = 0
+    q = deque([(min_coord, min_coord, min_coord)])
     seen = set()
     while q:
-        x, y, z = q.popleft()
-        if (x, y, z) in data:
+        p = q.popleft()
+        if p in seen:
             continue
-        if (x, y, z) in seen:
-            continue
-        seen.add((x, y, z))
-        if len(seen) > 1500:
-            for p in seen:
-                outside.add(p)
-            return True
-        q.append((x+1, y, z))
-        q.append((x-1, y, z))
-        q.append((x, y-1, z))
-        q.append((x, y+1, z))
-        q.append((x, y, z-1))
-        q.append((x, y, z+1))
-    for p in seen:
-        inside.add(p)
-    return False
+        seen.add(p)
+        for n in get_neighbors(*p):
+            if n not in data and all(max_coord >= coord >= min_coord for coord in n):
+                q.append(n)
+            elif n in data:
+                outside_faces += 1
+
+    return outside_faces
 
 
 if __name__ == '__main__':
     main()
-

@@ -47,8 +47,8 @@ def solve(tree):
 
     # Part 2
     disk_size = 70_000_000
-    upadte_size = 30_000_000
-    needed_space = upadte_size - (disk_size - dir_sizes['/'])
+    update_size = 30_000_000
+    needed_space = update_size - (disk_size - dir_sizes['/'])
     p2 = sorted(s for s in dir_sizes.values() if s > needed_space)[0]
 
     return p1, p2

@@ -13,7 +13,7 @@ def main():
 def solve(data):
     count1 = count2 = 0
     for r1, r2 in data:
-        overlap = len(r1.intersection(r2))
+        overlap = len(r1 & r2)
         if len(r1) == overlap or len(r2) == overlap:
             count1 += 1
         if overlap:

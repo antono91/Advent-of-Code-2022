@@ -1,17 +1,18 @@
-import re, copy
+import copy
+import re
 
 
 def main():
     with open('input.txt') as f:
         stacks, inst = f.read().split("\n\n")
-        inst = [list(map(int, re.findall('\d+', l))) for l in inst.split('\n')]
+        inst = [list(map(int, re.findall(r'\d+', line))) for line in inst.split('\n')]
 
-        stacks = [l[1::4] for l in stacks.split('\n')][::-1]
+        stacks = [line[1::4] for line in stacks.split('\n')][::-1]
         stacks = {
             int(stacks[0][i]): [s[i] for s in stacks[1:] if s[i] != ' ']
             for i in range(len(stacks[0]))
         }
-        
+
     print(solve(stacks, inst))
 
 

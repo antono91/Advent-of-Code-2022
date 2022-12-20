@@ -63,7 +63,7 @@ My Solutions to the [Advent of Code 2022](https://adventofcode.com) challenges
 
 --- Day 16: Proboscidea Volcanium ---
 * [Challenge](https://adventofcode.com/2022/day/16)
-* [Solution](day16) --pending--
+* [Solution](day16) -- pending --
 
 --- Day 17: Pyroclastic Flow ---
 * [Challenge](https://adventofcode.com/2022/day/17)
@@ -72,3 +72,11 @@ My Solutions to the [Advent of Code 2022](https://adventofcode.com) challenges
 --- Day 18: Boiling Boulders ---
 * [Challenge](https://adventofcode.com/2022/day/18)
 * [Solution](day18)
+
+--- Day 19: Not Enough Minerals ---
+* [Challenge](https://adventofcode.com/2022/day/19)
+* [Solution](day19) -- not working --
+
+--- Day 20: Grove Positioning System ---
+* [Challenge](https://adventofcode.com/2022/day/20)
+* [Solution](day20)

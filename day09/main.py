@@ -43,7 +43,7 @@ def move_rope(knots):
 def solve(data, l):
     MOVES = {'R': (1, 0), 'U': (0, 1), 'L': (-1, 0), 'D': (0, -1)}
     knots = [(0, 0)] * l
-    visited = {}
+    visited = set()
 
     for dir, moves in data:
         dx, dy = MOVES[dir]

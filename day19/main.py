@@ -6,7 +6,7 @@ def main():
     data = []
     with open('input.txt') as f:
         for line in f:
-            data.append(list(map(int, re.findall("\d+", line.strip()))))
+            data.append(list(map(int, re.findall(r'\d+', line.strip()))))
     print(solve(data))
 
 

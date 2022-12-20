@@ -24,10 +24,13 @@ def mixing(li, n):
     len_ = len(li)
     for _ in range(n):
         for ind in range(len_):
-            ind_item_to_move = [j for j, (i, v) in enumerate(li) if ind == i].pop()
-            item_to_move = li.pop(ind_item_to_move)
-            new_index = (ind_item_to_move + item_to_move[1]) % (len_ - 1)
-            li = li[:new_index] + [item_to_move] + li[new_index:]
+            for j, (i, v) in enumerate(li):
+                if ind == i:
+                    ind_to_move = j
+                    break
+            item = li.pop(ind_to_move)
+            new_index = (ind_to_move + item[1]) % (len_ - 1)
+            li = li[:new_index] + [item] + li[new_index:]
     return li
 
 

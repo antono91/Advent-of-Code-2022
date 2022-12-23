@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+
 def main():
     print(solve(parse_input('input.txt'), 10, True))
     print(solve(parse_input('input.txt'), 1000, False))

@@ -16,8 +16,8 @@ def main():
                 if c == "v": blizzards.append((x, y, 0, 1))
                 width = max(width, x)
                 height = max(height, y)
-
-    solve(blizzards, walls, width, height)
+    blizzards_by_t = create_blizzard_dict(blizzards, width, height)
+    print(solve(blizzards_by_t, walls, width, height))
 
 
 # helper function
@@ -45,39 +45,50 @@ def plot(blizzards, width, height):
     print()
 
 
-def solve(blizzards, walls, width, height):
-    q = deque([(1, 0, 0)])
+def solve(blizzards_by_t, walls, width, height):
     seen = set()
+    p1, part1 = False, 0
+    reached_end = reached_start = False
+    q = deque([(1, 0, 0, reached_end, reached_start)])
     while q:
-        x, y, t = q.popleft()
+        x, y, t, reached_end, reached_start = q.popleft()
         if x < 0 or x > width or y < 0 or y > height or (x, y) in walls:
             continue
+        if y == height and reached_end and reached_start:
+            return part1, t
+        if y == height and not p1:
+            p1 = True
+            part1 = t
         if y == height:
-            print(f"{x, y}Found end in: {t} minutes")
-            break
-        if (x, y, t) in seen:
+            reached_end = True
+        if reached_end and y == 0:
+            reached_start = True
+
+        if (x, y, t, reached_end, reached_start) in seen:
             continue
-        seen.add((x, y, t))
+        seen.add((x, y, t, reached_end, reached_start))
 
-        blizzards = simulate_next_min(blizzards, width, height)
-        blizzards_pos = {(x, y) for x, y, _, _ in blizzards}
+        blizzards = blizzards_by_t[(t + 1) % len(blizzards_by_t)]
 
-        if (x, y) not in blizzards_pos:
-            q.append((x, y, t + 1))
+        if (x, y) not in blizzards:
+            q.append((x, y, t + 1, reached_end, reached_start))
         for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
             nx, ny = x + dx, y + dy
-            if (nx, ny) not in blizzards_pos:
-                q.append((nx, ny, t + 1))
+            if (nx, ny) not in blizzards:
+                q.append((nx, ny, t + 1, reached_end, reached_start))
 
 
-def simulate_next_min(blizzards, width, height):
-    for _ in range(len(blizzards)):
-        x, y, dx, dy = blizzards.pop(0)
-        nx, ny = x + dx, y + dy
-        ny = 1 if ny >= height else height - 1 if ny < 1 else ny
-        nx = 1 if nx >= width else width - 1 if nx < 1 else nx
-        blizzards.append((nx, ny, dx, dy))
-    return blizzards
+def create_blizzard_dict(blizzards, width, height):
+    blizzards_by_t = {0: set((x, y) for x, y, _, _ in blizzards)}
+    for t in range(1, (width - 1) * (height - 1) - 1):
+        for _ in range(len(blizzards)):
+            x, y, dx, dy = blizzards.pop(0)
+            nx, ny = x + dx, y + dy
+            ny = 1 if ny >= height else height - 1 if ny < 1 else ny
+            nx = 1 if nx >= width else width - 1 if nx < 1 else nx
+            blizzards.append((nx, ny, dx, dy))
+        blizzards_by_t[t] = set((x, y) for x, y, _, _ in blizzards)
+    return blizzards_by_t
 
 
 if __name__ == '__main__':

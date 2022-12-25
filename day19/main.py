@@ -16,10 +16,10 @@ def solve(data):
 
 
 def simulate_blueprint(ore, clay, obsidian, geode):
-    robots = dict(ore = 1, clay = 0, obsidian = 0, geode = 0)
-    minerals = dict(ore = 0, clay = 0, obsidian = 0, geode = 0)
-    costs = dict(ore = ore, clay = clay, obsidian = obsidian, geode = geode)
-    for time in range(1,25):
+    robots = dict(ore=1, clay=0, obsidian=0, geode=0)
+    minerals = dict(ore=0, clay=0, obsidian=0, geode=0)
+    costs = dict(ore=ore, clay=clay, obsidian=obsidian, geode=geode)
+    for time in range(1, 25):
         # buy new robots
         new_robots = []
 
@@ -32,4 +32,3 @@ def simulate_blueprint(ore, clay, obsidian, geode):
 
 if __name__ == '__main__':
     main()
-

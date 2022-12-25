@@ -14,7 +14,6 @@ def solve(data):
     part1 = int(eval(calc_mokeys('root', data, False)))
 
     # Part2
-    data['humn'] = 'x'
     left, _, right = data['root'].split()
 
     left = calc_mokeys(left, data, True)
@@ -28,10 +27,10 @@ def solve(data):
 
 
 def calc_mokeys(node, data, part2):
-    if data[node].isdigit():
-        return data[node]
     if node == 'humn' and part2:
         return 'x'
+    if data[node].isdigit():
+        return data[node]
     val1, op, val2 = data[node].split()
     return f"({calc_mokeys(val1, data, part2)} {op} {calc_mokeys(val2, data, part2)})"
 

@@ -59,6 +59,3 @@ def solve(data, l):
 
 if __name__ == '__main__':
     main()
-
-
-

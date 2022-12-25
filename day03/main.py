@@ -1,8 +1,8 @@
-
 def main():
     with open('input.txt') as f:
         data = [line.strip() for line in f]
     print(solve(data))
+
 
 def solve(data):
     s = s2 = 0
